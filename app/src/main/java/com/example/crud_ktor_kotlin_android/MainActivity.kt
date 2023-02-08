@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.crud_ktor_kotlin_android.core.util.Screen
+import com.example.crud_ktor_kotlin_android.feature_posts.presentation.add_update_post.AddUpdatePostScreen
 import com.example.crud_ktor_kotlin_android.feature_posts.presentation.posts.PostsScreen
 import com.example.crud_ktor_kotlin_android.ui.theme.CRUDKtorKotlin_AndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,20 +22,24 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CRUDKtorKotlin_AndroidTheme {
-                // A surface container using the 'background' color from the theme
+                val navController = rememberNavController()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
                     NavHost(
-                        navController = rememberNavController(),
+                        navController = navController,
                         startDestination = Screen.PostsScreen.route
                     ) {
                         composable(route = Screen.PostsScreen.route) {
-                            PostsScreen()
+                            PostsScreen(
+                                navController = navController
+                            )
                         }
 
-                        composable(route = Screen.AddUpdateScreen.route) {}
+                        composable(route = Screen.AddUpdateScreen.route) {
+                            AddUpdatePostScreen()
+                        }
                     }
                 }
             }
