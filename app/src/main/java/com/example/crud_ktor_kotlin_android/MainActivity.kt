@@ -38,7 +38,9 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(route = Screen.AddUpdateScreen.route) {
-                            AddUpdatePostScreen()
+                            AddUpdatePostScreen(
+                                navController = navController
+                            )
                         }
                     }
                 }

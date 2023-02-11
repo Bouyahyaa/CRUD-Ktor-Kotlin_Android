@@ -27,9 +27,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.crud_ktor_kotlin_android.core.util.Constants
 import java.io.File
 import com.example.crud_ktor_kotlin_android.R
+import com.example.crud_ktor_kotlin_android.core.util.Screen
 import com.example.crud_ktor_kotlin_android.core.util.ValidationEvent
 import com.example.crud_ktor_kotlin_android.feature_posts.presentation.add_update_post.components.ProfileImage
 import com.example.crud_ktor_kotlin_android.feature_posts.presentation.add_update_post.components.TextFieldCustom
@@ -37,6 +39,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun AddUpdatePostScreen(
+    navController: NavController,
     viewModel: AddUpdatePostViewModel = hiltViewModel()
 ) {
 
@@ -82,6 +85,7 @@ fun AddUpdatePostScreen(
             when (event) {
                 is ValidationEvent.Success -> {
                     Log.e("State", event.message)
+                    navController.navigate(Screen.PostsScreen.route)
                 }
                 is ValidationEvent.Error -> {
                     Log.e("State", event.error)

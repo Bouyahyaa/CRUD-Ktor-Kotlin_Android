@@ -10,4 +10,6 @@ interface PostsRepository {
         postImage: MultipartBody.Part?,
         title: RequestBody
     )
+
+    suspend fun deletePost(postId: String)
 }

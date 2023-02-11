@@ -23,4 +23,8 @@ class PostRemoteDataSource @Inject constructor(
         )
         return response.body()!!
     }
+
+    suspend fun deletePost(postId: String) {
+        return api.deletePost(postId).body()!!
+    }
 }

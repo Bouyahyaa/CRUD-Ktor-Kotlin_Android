@@ -56,14 +56,17 @@ fun PostsScreen(
             ) {
                 LazyVerticalGrid(
                     modifier = Modifier.fillMaxSize(),
-                    cells = GridCells.Fixed(2),
+                    cells = GridCells.Fixed(1),
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
                     items(state.posts) { post ->
                         PostListItem(
                             painterBaseImage = rememberImagePainter(post.image),
-                            title = post.title
+                            post = post,
+                            onDelete = {
+                                postsViewModel.onEvent(PostEvent.OnDeletePost(it))
+                            }
                         )
                     }
                 }
