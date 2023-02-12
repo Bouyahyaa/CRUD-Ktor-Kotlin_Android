@@ -2,6 +2,7 @@ package com.example.crud_ktor_kotlin_android.feature_posts.presentation.add_upda
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.crud_ktor_kotlin_android.core.util.Resource
@@ -23,7 +24,8 @@ import javax.inject.Inject
 class AddUpdatePostViewModel @Inject constructor(
     private val validateField: ValidateField,
     private val validateImage: ValidateImage,
-    private val createPostUseCase: CreatePostUseCase
+    private val createPostUseCase: CreatePostUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val _state = mutableStateOf(AddUpdatePostState())
     val state: State<AddUpdatePostState> = _state
