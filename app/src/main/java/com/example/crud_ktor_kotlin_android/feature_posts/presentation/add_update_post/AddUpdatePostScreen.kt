@@ -10,10 +10,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +37,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun AddUpdatePostScreen(
     navController: NavController,
+    postId: String,
     viewModel: AddUpdatePostViewModel = hiltViewModel()
 ) {
 
@@ -206,11 +204,23 @@ fun AddUpdatePostScreen(
                     .height(50.dp),
             ) {
                 Text(
-                    text = "Add",
+                    text = if (postId != "") "Edit" else "Add",
                     modifier = Modifier.padding(
                         start = 10.dp,
                         bottom = 2.dp
                     )
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        if (state.isLoading) {
+            Box(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
                 )
             }
         }

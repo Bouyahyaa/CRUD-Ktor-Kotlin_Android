@@ -20,7 +20,9 @@ import com.example.crud_ktor_kotlin_android.feature_posts.domain.models.Post
 fun PostListItem(
     painterBaseImage: Painter,
     post: Post,
-    onDelete: (String) -> Unit
+    onDelete: (String) -> Unit,
+    onEdit: () -> Unit,
+    isLoading: Boolean,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -51,14 +53,22 @@ fun PostListItem(
                 },
                 modifier = Modifier.align(Alignment.TopEnd)
             ) {
-                Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete Image",
-                    tint = Color.Red.copy(alpha = 0.5f)
+                if (!post.isLoading)
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete Image",
+                        tint = Color.Red.copy(alpha = 0.5f)
+                    )
+                else CircularProgressIndicator(
+                    modifier = Modifier.size(15.dp),
+                    color = Color.White,
+                    strokeWidth = 2.dp
                 )
             }
 
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {
+                onEdit()
+            }) {
                 Icon(
                     imageVector = Icons.Default.Edit,
                     contentDescription = "Edit Image"

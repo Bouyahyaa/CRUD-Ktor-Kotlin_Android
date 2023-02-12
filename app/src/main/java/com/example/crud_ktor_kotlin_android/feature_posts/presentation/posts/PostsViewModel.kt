@@ -80,8 +80,16 @@ class PostsViewModel @Inject constructor(
 
                     is Resource.Loading -> {
                         Log.e("dataPost", "${result.data}")
+                        val posts = _state.value.posts.map { post ->
+                            if (post.id == postId) {
+                                post.copy(isLoading = true)
+                            } else {
+                                post
+                            }
+
+                        }
                         _state.value = state.value.copy(
-                            isLoading = true
+                            posts = posts
                         )
                     }
                 }

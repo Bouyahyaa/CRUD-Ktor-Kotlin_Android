@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.crud_ktor_kotlin_android.core.util.Screen
 import com.example.crud_ktor_kotlin_android.feature_posts.presentation.add_update_post.AddUpdatePostScreen
 import com.example.crud_ktor_kotlin_android.feature_posts.presentation.posts.PostsScreen
@@ -37,9 +39,18 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(route = Screen.AddUpdateScreen.route) {
+                        composable(
+                            route = Screen.AddUpdateScreen.route + "?postId={postId}",
+                            arguments = listOf(
+                                navArgument("postId") {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                },
+                            )
+                        ) { entry ->
                             AddUpdatePostScreen(
-                                navController = navController
+                                navController = navController,
+                                postId = entry.arguments?.getString("postId")!!,
                             )
                         }
                     }

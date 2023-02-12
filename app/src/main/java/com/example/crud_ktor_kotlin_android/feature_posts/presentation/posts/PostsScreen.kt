@@ -19,7 +19,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.crud_ktor_kotlin_android.BuildConfig
-import com.example.crud_ktor_kotlin_android.core.util.Constants
 import com.example.crud_ktor_kotlin_android.core.util.Screen
 import com.example.crud_ktor_kotlin_android.feature_posts.presentation.posts.components.PostListItem
 
@@ -68,7 +67,11 @@ fun PostsScreen(
                             post = post,
                             onDelete = {
                                 postsViewModel.onEvent(PostEvent.OnDeletePost(it))
-                            }
+                            },
+                            onEdit = {
+                                navController.navigate(Screen.AddUpdateScreen.route + "?postId=${post.id}")
+                            },
+                            isLoading = post.isLoading
                         )
                     }
                 }
