@@ -6,8 +6,6 @@ import android.net.Uri
 import android.provider.MediaStore
 
 object Constants {
-    const val BASE_URL = "http://192.168.1.19:8080/"
-
     fun getImageFilePath(context: Context, uri: Uri?): String? {
         var path: String? = null
         var image_id: String? = null

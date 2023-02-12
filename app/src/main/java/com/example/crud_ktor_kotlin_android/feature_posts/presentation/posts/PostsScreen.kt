@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
+import com.example.crud_ktor_kotlin_android.BuildConfig
+import com.example.crud_ktor_kotlin_android.core.util.Constants
 import com.example.crud_ktor_kotlin_android.core.util.Screen
 import com.example.crud_ktor_kotlin_android.feature_posts.presentation.posts.components.PostListItem
 
@@ -62,7 +64,7 @@ fun PostsScreen(
                 ) {
                     items(state.posts) { post ->
                         PostListItem(
-                            painterBaseImage = rememberImagePainter(post.image),
+                            painterBaseImage = rememberImagePainter("${BuildConfig.SERVER_BASE_URL}${post.image}"),
                             post = post,
                             onDelete = {
                                 postsViewModel.onEvent(PostEvent.OnDeletePost(it))

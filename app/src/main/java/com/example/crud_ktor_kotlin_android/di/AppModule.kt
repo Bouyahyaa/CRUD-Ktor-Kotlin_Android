@@ -1,7 +1,7 @@
 package com.example.crud_ktor_kotlin_android.di
 
 import android.content.SharedPreferences
-import com.example.crud_ktor_kotlin_android.core.util.Constants
+import com.example.crud_ktor_kotlin_android.BuildConfig
 import com.example.crud_ktor_kotlin_android.feature_posts.data.data_source.PostApi
 import com.example.crud_ktor_kotlin_android.feature_posts.data.data_source.PostRemoteDataSource
 import com.example.crud_ktor_kotlin_android.feature_posts.data.repository.PostsRepositoryImpl
@@ -42,7 +42,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providePostApi(): PostApi {
-        return Retrofit.Builder().baseUrl(Constants.BASE_URL)
+        return Retrofit.Builder().baseUrl(BuildConfig.SERVER_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
             .create(PostApi::class.java)
     }
