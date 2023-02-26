@@ -21,6 +21,15 @@ class PostsRepositoryImpl @Inject constructor(
         return postRemoteDataSource.createPost(postImage, title)
     }
 
+    override suspend fun updatePost(
+        postId: String,
+        postImage: MultipartBody.Part?,
+        title: RequestBody
+    ) {
+        return postRemoteDataSource.updatePost(postId, postImage, title)
+
+    }
+
     override suspend fun deletePost(postId: String) {
         return postRemoteDataSource.deletePost(postId)
     }

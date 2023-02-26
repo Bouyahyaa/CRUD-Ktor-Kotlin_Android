@@ -11,5 +11,11 @@ interface PostsRepository {
         title: RequestBody
     )
 
+    suspend fun updatePost(
+        postId: String,
+        postImage: MultipartBody.Part?,
+        title: RequestBody
+    )
+
     suspend fun deletePost(postId: String)
 }

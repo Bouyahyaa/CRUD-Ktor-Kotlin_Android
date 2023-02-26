@@ -31,4 +31,18 @@ object Constants {
         }
         return path
     }
+
+    fun String.toFormattedUrlNav(): String {
+        return this.replace(
+            ":",
+            "%3A"
+        ).replace("/", "%2F")
+    }
+
+    fun String.toFormattedUrlGet(): String {
+        return this.replace(
+            "%3A", ":"
+        ).replace("%2F", "/")
+    }
+
 }

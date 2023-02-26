@@ -40,12 +40,20 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(
-                            route = Screen.AddUpdateScreen.route + "?postId={postId}",
+                            route = Screen.AddUpdateScreen.route + "?postId={postId}&title={title}&image={image}",
                             arguments = listOf(
                                 navArgument("postId") {
                                     type = NavType.StringType
                                     defaultValue = ""
                                 },
+                                navArgument("title") {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                },
+                                navArgument("image") {
+                                    type = NavType.StringType
+                                    defaultValue = ""
+                                }
                             )
                         ) { entry ->
                             AddUpdatePostScreen(

@@ -22,7 +22,6 @@ fun PostListItem(
     post: Post,
     onDelete: (String) -> Unit,
     onEdit: () -> Unit,
-    isLoading: Boolean,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),

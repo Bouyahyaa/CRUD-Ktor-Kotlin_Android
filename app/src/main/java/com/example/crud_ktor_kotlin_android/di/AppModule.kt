@@ -1,7 +1,9 @@
 package com.example.crud_ktor_kotlin_android.di
 
+import android.content.Context
 import android.content.SharedPreferences
 import com.example.crud_ktor_kotlin_android.BuildConfig
+import com.example.crud_ktor_kotlin_android.CrudApplication
 import com.example.crud_ktor_kotlin_android.feature_posts.data.data_source.PostApi
 import com.example.crud_ktor_kotlin_android.feature_posts.data.data_source.PostRemoteDataSource
 import com.example.crud_ktor_kotlin_android.feature_posts.data.repository.PostsRepositoryImpl
@@ -9,6 +11,7 @@ import com.example.crud_ktor_kotlin_android.feature_posts.domain.repository.Post
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,6 +22,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideApplication(@ApplicationContext app: Context): CrudApplication {
+        return app as CrudApplication
+    }
 
     @Provides
     @Singleton

@@ -24,6 +24,19 @@ class PostRemoteDataSource @Inject constructor(
         return response.body()!!
     }
 
+    suspend fun updatePost(
+        postId: String,
+        postImage: MultipartBody.Part?,
+        title: RequestBody,
+    ) {
+        val response = api.updatePost(
+            postId = postId,
+            postImage = postImage,
+            title = title
+        )
+        return response.body()!!
+    }
+
     suspend fun deletePost(postId: String) {
         return api.deletePost(postId).body()!!
     }

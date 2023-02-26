@@ -38,12 +38,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "SERVER_BASE_URL", "\"http://192.168.1.100:8080/\""
+            buildConfigField "String", "SERVER_BASE_URL", "\"http://192.168.1.18:8080/\""
         }
 
 
         debug {
-            buildConfigField "String", "SERVER_BASE_URL", "\"http://192.168.1.100:8080/\""
+            buildConfigField "String", "SERVER_BASE_URL", "\"http://192.168.1.18:8080/\""
 
         }
 
